@@ -26,14 +26,31 @@ export class AppComponent implements OnInit {
   predictions;
   prediction = 0;
 
-  public async ngOnInit() {
-    this.dict = await $.ajax({url: '/assets/dict.csv',dataType: 'text',});
+  ngOnInit() {
+    this.loadModel();
+  }
+
+  async loadModel(): Promise<any>  {
+    this.dict = await $.ajax({url: './assets/dict.csv',dataType: 'text',});
     console.log('dict type',typeof this.dict);
-    this.model = await tf.loadLayersModel('/assets/model.json');
+    this.model = await tf.loadLayersModel('./assets/model.json');
     console.log('model type',typeof this.model);
     // console.log(this.model.summary());
-    this.word_index = await success(this.dict);
+    this.word_index = await this.success(this.dict);
     console.log('word_index type',typeof this.word_index);
+  }
+
+  async success(data): Promise<any>{
+    var wd_idx = new Object();
+    var lst = data.split(/\r?\n|\r/);
+    for(var i = 0 ; i < lst.length ;i++){
+        var key = (lst[i]).split(',')[0];
+        var value = (lst[i]).split(',')[1];
+        if(key == "")
+            continue
+        wd_idx[key] = parseInt(value);
+    }
+    return wd_idx
   }
 
   process(txt){
@@ -87,16 +104,3 @@ export class AppComponent implements OnInit {
     // console.log('prediction ', this.prediction);
   }
 };
-
-async function success(data){
-  var wd_idx = new Object();
-  var lst = data.split(/\r?\n|\r/);
-  for(var i = 0 ; i < lst.length ;i++){
-      var key = (lst[i]).split(',')[0];
-      var value = (lst[i]).split(',')[1];
-      if(key == "")
-          continue
-      wd_idx[key] = parseInt(value);
-  }
-  return wd_idx
-}
