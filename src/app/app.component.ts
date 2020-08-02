@@ -6,6 +6,7 @@ import * as $ from 'jquery';
 // https://towardsdatascience.com/how-to-use-angular-to-deploy-tensorflow-web-apps-5675b5a042cc
 // https://medium.com/@alyafey22/sentiment-classification-from-keras-to-the-browser-7eda0d87cdc6
 // https://medium.com/@dhormale/integrate-machine-learning-tensorflow-model-with-angular-d72ec9287520
+// to solve compatility issue with WebGL and Typescript with Tensor: npm i --save @types/webgl2
 
 @Component({
   selector: 'app-root',
