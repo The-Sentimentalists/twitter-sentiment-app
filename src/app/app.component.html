@@ -342,9 +342,7 @@
   </div>
 
   <!-- Next Steps -->
-  <h2>Next Steps</h2>
-  <p>What do you want to do next with your app?</p>
-  
+  <h2>Try some text below</h2>  
   <!--Textarea with icon prefix-->
   <!-- <div class="md-form">
     <p>
@@ -352,8 +350,8 @@
     </p>
     <input [value]="sentimenttext" (input)="sentimenttext=$event.target.value" id="sentimenttext1">
   </div> -->
-  <div class="md-form">
-    <div class="card highlight-card card-small">
+  <div class="card card-small">
+    <div class="card-body">
       <input [value]="sentimenttext" [ngModel]="sentimenttext" (ngModelChange)="textchanged($event)" id="sentimenttext2">
       <!-- More info: https://angular.io/guide/forms -->
     </div>
@@ -362,7 +360,7 @@
   <div class="terminal">
     <div>
       <p>
-        This is the input text: {{sentimenttext}}
+        Text input: {{sentimenttext}}
       </p>
       <p>
         Lenth: {{sentimenttext.length}}
@@ -371,19 +369,24 @@
         Prediction Score: {{prediction}}
       </p>
       <p>
-        <!-- Predictions: {{predictions}} -->
+        Sentiment: {{sentiment}}
       </p>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-      <a rel="noopener" (click)="predict()"> 
+      <!-- <a rel="noopener" (click)="predict()"> 
         <button class="github-star-badge">
             <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
           Click to predict
         </button>
-      </a>
+      </a> -->
+      <div class="btn-group btn-group-toggle">
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="checkbox" ngbButton (click)="predict()"> Click for Sentiment
+        </label>
+      </div>
   </footer>
 
   <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
